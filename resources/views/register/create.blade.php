@@ -10,7 +10,11 @@
                         Username
                     </label>
 
-                    <input class="border border-gray-400 p-2 w-full" type="text" name="username" id="username" required>
+                    <input class="border border-gray-400 p-2 w-full" type="text" value="{{ old('username') }}" name="username" id="username" required>
+
+                    @error('username')
+                        <p class="text-red-400 mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
 
@@ -19,7 +23,11 @@
                         Email
                     </label>
 
-                    <input class="border border-gray-400 p-2 w-full" type="email" name="email" id="email" required>
+                    <input class="border border-gray-400 p-2 w-full" type="email" value="{{ old('email') }}" name="email" id="email" required>
+
+                    @error('email')
+                    <p class="text-red-400 mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -28,6 +36,10 @@
                     </label>
 
                     <input class="border border-gray-400 p-2 w-full" type="password" name="password" id="password" required>
+
+                    @error('password')
+                    <p class="text-red-400 mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
