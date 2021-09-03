@@ -15,8 +15,21 @@
             </a>
         </div>
 
-        <div class="mt-8 md:mt-0">
-            <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+        <div class="mt-8 md:mt-0 flex items-center">
+            @auth()
+                <div class="flex items-center">
+                    <a href="/" class="text-lg font-bold mr-3">{{ ucwords(auth()->user()->username) }}</a>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
+                </div>
+            @else
+                <div class="flex items-center">
+                    <a href="/register" class="text-xs font-bold uppercase mr-3">Register</a>
+                    <a href="/login" class="text-xs font-bold uppercase">Login</a>
+                </div>
+            @endauth
 
             <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                 Subscribe for Updates
