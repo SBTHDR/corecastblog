@@ -52,6 +52,32 @@
             <section class="col-span-8 col-start-5 mt-10 space-y-6">
                 <h1 class="text-sm font-bold">Comments</h1>
 
+                @if(auth()->check())
+                    <form action="/post/{{ $post->slug }}/comments" method="POST" class="border border-gray-200 p-6 rounded-xl">
+                        @csrf
+                        <header class="flex items-center">
+                            <img src="https://i.pravatar.cc/60?u={{ auth()->id() }}" alt="" width="60" height="60" class="rounded-xl">
+                            <h2 class="ml-2">Post a comment</h2>
+                        </header>
+
+                        <div class="mt-3">
+                            <textarea name="body" rows="5" class="w-full focus-outline-none rounded-lg" placeholder="Write something about this post.">
+
+                            </textarea>
+                        </div>
+
+                        @error('body')
+                            <p class="text-red-400">{{ $message }}</p>
+                        @enderror
+
+                        <div class="mt-3 flex justify-end">
+                            <button type="submit" class="bg-blue-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600">Post</button>
+                        </div>
+                    </form>
+                @else
+                    <P>Login to post a comment</P>
+                @endif
+
                 @foreach($post->comments as $comment)
                     <x-post-comment :comment="$comment"/>
                 @endforeach
