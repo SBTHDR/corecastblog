@@ -1,6 +1,6 @@
 @props(['toggle'])
 
-<div x-data="{ show: false }" @click.away="show = false">
+<div x-data="{ show: false }" @click.away="show = false" class="relative">
     <div @click="show = !show">
         {{ $toggle }}
     </div>
